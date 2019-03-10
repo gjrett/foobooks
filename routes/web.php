@@ -12,9 +12,10 @@
 */
 
 #Route::view('welcome');
-#Route::get('/books', 'BookController@index');
-#Route::get('/books/{title}', 'BookController@show');
-Route::post('/books', function() {
+Route::get('/books', 'BookController@index');
+Route::get('/books/{title}', 'BookController@show');
+
+/*#Route::post('/books', function() {
     return 'Version A';
 });
 
@@ -25,3 +26,4 @@ Route::get('/books/{id?}', function() {
 Route::get('/books', function() {
     return 'Version C';
 });
+*/
