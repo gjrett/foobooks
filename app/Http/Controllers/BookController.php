@@ -7,7 +7,13 @@ use App;
 
 class BookController extends Controller
 {
-
+    /**
+     * GET /books/{title}
+     */
+    public function show($title)
+    {
+        return view('books.show')->with(['title' => $title]);
+    }
     /**
      * GET /books
      */
@@ -16,11 +22,4 @@ class BookController extends Controller
         return 'Here are all the books...';
     }
 
-    /**
-     * GET /books/{title}
-     */
-    public function show($title)
-    {
-        return 'Results for the book: ' . $title;
-    }
 }
