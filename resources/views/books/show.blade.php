@@ -10,9 +10,18 @@
 @endsection
 
 @section('content')
-    <h1>{{ $title }}</h1>
+    @if(isset($title))
+        <h1>{{ $title }}</h1>
 
-    <p>
-        Details about this book will go here...
-    </p>
+        <p>
+            Details about this book will go here...
+        </p>
+    @else
+        <p>
+            Book not found
+        </p>
+    @endif
 @endsection
+
+
+
