@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use IanLChapman\PigLatinTranslator\Parser;
+use App\Book; # <----------- NEW
 
 class PracticeController extends Controller
 {
@@ -11,8 +12,142 @@ class PracticeController extends Controller
     /**
      *
      */
+    public function practice11()
+    {
+        $book = new Book();
+        $books = $book::where('author', 'LIKE', '%Rowling%')->delete();
+
+        $books = $book::all();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title. $book->author);
+            }
+        }
+    }
+    /**
+     *
+     */
+
+    public function practice10()
+    {
+        $book = new Book();
+        $books = $book::where('author', '=', 'J.K. Rowling')->update(['author'=>'JK Rowling']);
+
+        $books = $book::where('author', 'LIKE', '%Rowling%')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title. $book->author);
+            }
+        }
+    }
+    /**
+     *
+     */
+    public function practice9()
+    {
+        $book = new Book();
+        $books = $book::orderBy('published_year', 'desc')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+    /**
+     *
+     */
+    public function practice8()
+    {
+        $book = new Book();
+        $books = $book::orderBy('title', 'asc')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+    /**
+     *
+     */
+    public function practice7()
+    {
+        $book = new Book();
+        $books = $book::where('published_year', '>', '1950')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+    /**
+     *
+     */
+    public function practice6()
+    {
+        $book = new Book();
+        $books = $book::orderBy('id', 'desc')->take(2)->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+    /**
+     *
+     */
+
+    public function practice5()
+    {
+        $book = new Book();
+        $books = $book->where('title', 'LIKE', '%Harry Potter%')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+    /**
+     *
+     */
     public function practice4()
     {
+        # Instantiate a new Book Model object
+        $book = new Book();
+
+        # Set the properties
+        # Note how each property corresponds to a field in the table
+        $book->title = 'Harry Potter and the Sorcerer\'s Stone';
+        $book->author = 'J.K. Rowling';
+        $book->published_year = 1997;
+        $book->cover_url = 'http://prodimage.images-bn.com/pimages/9780590353427_p0_v1_s484x700.jpg';
+        $book->purchase_url = 'http://www.barnesandnoble.com/w/harry-potter-and-the-sorcerers-stone-j-k-rowling/1100036321?ean=9780590353427';
+
+        # Invoke the Eloquent `save` method to generate a new row in the
+        # `books` table, with the above data
+        $book->save();
+
+        dump('Added: '.$book->title);
     }
 
     /**

@@ -21,8 +21,6 @@
 
         <input type='submit' value='Search' class='btn btn-primary'>
 
-
-
     </form>
 
     @if($searchTerm)

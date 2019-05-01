@@ -20,7 +20,22 @@ Route::get('/books/search', 'BookController@search');
 Route::get('/books/search-process', 'BookController@searchProcess');
 
 Route::get('/books', 'BookController@index');
-Route::get('/books/{title}', 'BookController@show');
+Route::get('/books/{id}', 'BookController@show');
+
+# Update functionality
+# Show the form to edit a specific book
+Route::get('/books/{id}/edit', 'BookController@edit');
+
+# Process the form to edit a specific book
+Route::put('/books/{id}', 'BookController@update');
+
+# DELETE
+# Show the page to confirm deletion of a book
+Route::get('/books/{id}/delete', 'BookController@delete');
+
+# Process the deletion of a book
+Route::put('/books/{id}', 'BookController@destroy');
+
 
 /**
  * Practice
